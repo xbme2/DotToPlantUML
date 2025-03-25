@@ -1,0 +1,41 @@
+digraph "classes_multi_hop" {
+rankdir=BT
+charset="utf-8"
+"ragas.prompt.base.BasePrompt" [color="black", fontcolor="black", label=<BasePrompt>, shape="record", style="solid"];
+"ragas.llms.base.BaseRagasLLM" [color="black", fontcolor="black", label=<BaseRagasLLM>, shape="record", style="solid"];
+"ragas.testset.synthesizers.base.BaseScenario" [color="black", fontcolor="black", label=<BaseScenario>, shape="record", style="solid"];
+"ragas.testset.synthesizers.base.BaseSynthesizer" [color="black", fontcolor="black", label=<BaseSynthesizer>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.ConceptCombinationPrompt" [color="black", fontcolor="black", label=<ConceptCombinationPrompt>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.ConceptCombinations" [color="black", fontcolor="black", label=<ConceptCombinations>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.ConceptsList" [color="black", fontcolor="black", label=<ConceptsList>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.GeneratedQueryAnswer" [color="black", fontcolor="black", label=<GeneratedQueryAnswer>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.abstract.MultiHopAbstractQuerySynthesizer" [color="black", fontcolor="black", label=<MultiHopAbstractQuerySynthesizer>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.base.MultiHopQuerySynthesizer" [color="black", fontcolor="black", label=<MultiHopQuerySynthesizer>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.base.MultiHopScenario" [color="black", fontcolor="black", label=<MultiHopScenario>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.specific.MultiHopSpecificQuerySynthesizer" [color="black", fontcolor="black", label=<MultiHopSpecificQuerySynthesizer>, shape="record", style="solid"];
+"ragas.testset.persona.Persona" [color="black", fontcolor="black", label=<Persona>, shape="record", style="solid"];
+"ragas.prompt.mixin.PromptMixin" [color="black", fontcolor="black", label=<PromptMixin>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" [color="black", fontcolor="black", label=<PydanticPrompt>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.QueryAnswerGenerationPrompt" [color="black", fontcolor="black", label=<QueryAnswerGenerationPrompt>, shape="record", style="solid"];
+"ragas.testset.synthesizers.multi_hop.prompts.QueryConditions" [color="black", fontcolor="black", label=<QueryConditions>, shape="record", style="solid"];
+"ragas.testset.synthesizers.base.QueryLength" [color="black", fontcolor="black", label=<QueryLength>, shape="record", style="solid"];
+"ragas.testset.synthesizers.base.QueryStyle" [color="black", fontcolor="black", label=<QueryStyle>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.prompt.base.BasePrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.base.BaseSynthesizer" -> "ragas.prompt.mixin.PromptMixin" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.abstract.MultiHopAbstractQuerySynthesizer" -> "ragas.testset.synthesizers.multi_hop.base.MultiHopQuerySynthesizer" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.base.MultiHopQuerySynthesizer" -> "ragas.testset.synthesizers.base.BaseSynthesizer" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.base.MultiHopScenario" -> "ragas.testset.synthesizers.base.BaseScenario" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.prompts.ConceptCombinationPrompt" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.prompts.QueryAnswerGenerationPrompt" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.testset.synthesizers.multi_hop.specific.MultiHopSpecificQuerySynthesizer" -> "ragas.testset.synthesizers.multi_hop.base.MultiHopQuerySynthesizer" [arrowhead="empty", arrowtail="none"];
+"ragas.llms.base.BaseRagasLLM" -> "ragas.testset.synthesizers.base.BaseSynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="llm", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.testset.synthesizers.multi_hop.abstract.MultiHopAbstractQuerySynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="concept_combination_prompt", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.testset.synthesizers.multi_hop.abstract.MultiHopAbstractQuerySynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="theme_persona_matching_prompt", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.testset.synthesizers.multi_hop.base.MultiHopQuerySynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="generate_query_reference_prompt", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.testset.synthesizers.multi_hop.specific.MultiHopSpecificQuerySynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="theme_persona_matching_prompt", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.testset.synthesizers.multi_hop.specific.MultiHopSpecificQuerySynthesizer" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="generate_query_reference_prompt", style="solid"];
+"ragas.testset.persona.Persona" -> "ragas.testset.synthesizers.base.BaseScenario" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="persona", style="solid"];
+"ragas.testset.persona.Persona" -> "ragas.testset.synthesizers.multi_hop.prompts.QueryConditions" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="persona", style="solid"];
+"ragas.testset.synthesizers.base.QueryLength" -> "ragas.testset.synthesizers.base.BaseScenario" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="length", style="solid"];
+"ragas.testset.synthesizers.base.QueryStyle" -> "ragas.testset.synthesizers.base.BaseScenario" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="style", style="solid"];
+}

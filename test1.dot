@@ -1,0 +1,43 @@
+digraph "classes_prompt" {
+rankdir=LR
+charset="utf-8"
+"pydantic.main.BaseModel" [color="black", fontcolor="black", label=<BaseModel>, shape="record", style="solid"];
+"ragas.prompt.base.BasePrompt" [color="black", fontcolor="black", label=<BasePrompt>, shape="record", style="solid"];
+"ragas.embeddings.base.BaseRagasEmbeddings" [color="black", fontcolor="black", label=<BaseRagasEmbeddings>, shape="record", style="solid"];
+"ragas.prompt.base.BoolIO" [color="black", fontcolor="black", label=<BoolIO>, shape="record", style="solid"];
+"ragas.prompt.few_shot_pydantic_prompt.ExampleStore" [color="black", fontcolor="black", label=<ExampleStore>, shape="record", style="solid"];
+"ragas.prompt.few_shot_pydantic_prompt.FewShotPydanticPrompt" [color="black", fontcolor="black", label=<FewShotPydanticPrompt>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.FixOutputFormat" [color="black", fontcolor="black", label=<FixOutputFormat>, shape="record", style="solid"];
+"ragas.prompt.multi_modal_prompt.ImageTextPrompt" [color="black", fontcolor="black", label=<ImageTextPrompt>, shape="record", style="solid"];
+"ragas.prompt.multi_modal_prompt.ImageTextPromptValue" [color="black", fontcolor="black", label=<ImageTextPromptValue>, shape="record", style="solid"];
+"ragas.prompt.few_shot_pydantic_prompt.InMemoryExampleStore" [color="black", fontcolor="black", label=<InMemoryExampleStore>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.OutputStringAndPrompt" [color="black", fontcolor="black", label=<OutputStringAndPrompt>, shape="record", style="solid"];
+"ragas.prompt.mixin.PromptMixin" [color="black", fontcolor="black", label=<PromptMixin>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" [color="black", fontcolor="black", label=<PydanticPrompt>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.RagasOutputParser" [color="black", fontcolor="black", label=<RagasOutputParser>, shape="record", style="solid"];
+"ragas.run_config.RunConfig" [color="black", fontcolor="black", label=<RunConfig>, shape="record", style="solid"];
+"ragas.prompt.base.StringIO" [color="black", fontcolor="black", label=<StringIO>, shape="record", style="solid"];
+"ragas.prompt.base.StringPrompt" [color="black", fontcolor="black", label=<StringPrompt>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.ToTranslate" [color="black", fontcolor="black", label=<ToTranslate>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.TranslateStatements" [color="black", fontcolor="black", label=<TranslateStatements>, shape="record", style="solid"];
+"ragas.prompt.pydantic_prompt.Translated" [color="black", fontcolor="black", label=<Translated>, shape="record", style="solid"];
+"ragas.prompt.base.BoolIO" -> "pydantic.main.BaseModel" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.base.StringIO" -> "pydantic.main.BaseModel" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.base.StringPrompt" -> "ragas.prompt.base.BasePrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.few_shot_pydantic_prompt.FewShotPydanticPrompt" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.few_shot_pydantic_prompt.InMemoryExampleStore" -> "ragas.prompt.few_shot_pydantic_prompt.ExampleStore" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.multi_modal_prompt.ImageTextPrompt" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.FixOutputFormat" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.OutputStringAndPrompt" -> "pydantic.main.BaseModel" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.PydanticPrompt" -> "ragas.prompt.base.BasePrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.ToTranslate" -> "pydantic.main.BaseModel" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.TranslateStatements" -> "ragas.prompt.pydantic_prompt.PydanticPrompt" [arrowhead="empty", arrowtail="none"];
+"ragas.prompt.pydantic_prompt.Translated" -> "pydantic.main.BaseModel" [arrowhead="empty", arrowtail="none"];
+"ragas.embeddings.base.BaseRagasEmbeddings" -> "ragas.prompt.few_shot_pydantic_prompt.InMemoryExampleStore" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="embeddings", style="solid"];
+"ragas.prompt.base.StringIO" -> "ragas.prompt.pydantic_prompt.FixOutputFormat" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="output_model", style="solid"];
+"ragas.prompt.few_shot_pydantic_prompt.ExampleStore" -> "ragas.prompt.few_shot_pydantic_prompt.FewShotPydanticPrompt" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="example_store", style="solid"];
+"ragas.prompt.pydantic_prompt.OutputStringAndPrompt" -> "ragas.prompt.pydantic_prompt.FixOutputFormat" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="input_model", style="solid"];
+"ragas.prompt.pydantic_prompt.ToTranslate" -> "ragas.prompt.pydantic_prompt.TranslateStatements" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="input_model", style="solid"];
+"ragas.prompt.pydantic_prompt.Translated" -> "ragas.prompt.pydantic_prompt.TranslateStatements" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="output_model", style="solid"];
+"ragas.run_config.RunConfig" -> "ragas.embeddings.base.BaseRagasEmbeddings" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="run_config", style="solid"];
+}

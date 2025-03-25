@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+
+class BaseModel {
+    
+}
+class BasePrompt
+class BaseRagasEmbeddings
+class BoolIO
+class ExampleStore
+class FewShotPydanticPrompt
+class FixOutputFormat
+class ImageTextPrompt
+class ImageTextPromptValue
+class InMemoryExampleStore
+class OutputStringAndPrompt
+class PromptMixin
+class PydanticPrompt
+class RagasOutputParser
+class RunConfig
+class StringIO
+class StringPrompt
+class ToTranslate
+class TranslateStatements
+class Translated
+
+BoolIO --|> BaseModel
+StringIO --|> BaseModel
+StringPrompt --|> BasePrompt
+FewShotPydanticPrompt --|> PydanticPrompt
+InMemoryExampleStore --|> ExampleStore
+ImageTextPrompt --|> PydanticPrompt
+FixOutputFormat --|> PydanticPrompt
+OutputStringAndPrompt --|> BaseModel
+PydanticPrompt --|> BasePrompt
+ToTranslate --|> BaseModel
+TranslateStatements --|> PydanticPrompt
+Translated --|> BaseModel
+
+BaseRagasEmbeddings --o InMemoryExampleStore : embeddings
+StringIO --o FixOutputFormat : output_model
+ExampleStore --o FewShotPydanticPrompt : example_store
+OutputStringAndPrompt --o FixOutputFormat : input_model
+ToTranslate --o TranslateStatements : input_model
+Translated --o TranslateStatements : output_model
+RunConfig --o BaseRagasEmbeddings : run_config
+@enduml
